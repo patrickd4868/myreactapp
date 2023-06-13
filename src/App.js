@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
@@ -8,8 +7,8 @@ import About from './Pages/About';
 function App() {
   return (
     <Router>
-      <div>
-        <nav>
+      <div className="App">
+        <nav className="sidebar">
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -20,10 +19,13 @@ function App() {
           </ul>
         </nav>
 
-        <Routes>
-          <Route path="/" element={<Home/>}/> 
-          <Route path="/about" element={<About/>}/>
-        </Routes>
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Home/>}/> 
+            <Route path="/about" element={<About/>}/>
+          </Routes>
+        </div>
+        
       
       </div>      
     </Router> 
