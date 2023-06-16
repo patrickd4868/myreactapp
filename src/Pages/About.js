@@ -1,15 +1,12 @@
-import logo from '../logo.svg';
-import '../App.css';
-import React from 'react';
+import logo from "../logo.svg";
+import "../App.css";
+import React from "react";
 
 function About() {
   return (
-    <div className="App">
+    <div className="Page">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          This is the about page.
-        </p>
+        <p>This is the about page.</p>
         <a
           className="App-link"
           href="https://reactjs.org"
