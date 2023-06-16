@@ -21,14 +21,10 @@ function App() {
           </button>
           <ul>
             <li>
-              <Link to="/" onClick={toggleNav}>
-                Home
-              </Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/about" onClick={toggleNav}>
-                About
-              </Link>
+              <Link to="/about">About</Link>
             </li>
           </ul>
         </nav>
