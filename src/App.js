@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import Home from "./Pages/Home";
 import About from "./Pages/About";
+import TestingPage from "./Pages/TestingPage";
 
 function App() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -26,6 +27,9 @@ function App() {
             <li>
               <Link to="/about">About</Link>
             </li>
+            <li>
+              <Link to="/testing">Testing</Link>
+            </li>
           </ul>
         </nav>
 
@@ -39,6 +43,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/testing" element={<TestingPage />} />
           </Routes>
         </div>
       </div>
