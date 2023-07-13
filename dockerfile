@@ -1,6 +1,9 @@
 # Use an official Node.js runtime as the base image
 FROM node:18.16
 
+# Install Xvfb for cypress headless environment
+RUN apt-get update && apt-get install -y xvfb
+
 # Set the working directory in the container
 WORKDIR /app
 
