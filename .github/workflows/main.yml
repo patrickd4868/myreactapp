@@ -13,14 +13,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: npm install
+      - name: Build Docker image
+        run: docker build -t myapp-image .
 
-      - name: Start local server
-        run: npm start
+      - name: Run Docker container
+        run: docker run -d -p 3000:3000 --name myapp-container myapp-image
 
       - name: Wait for server to start
         run: sleep 10
 
       - name: Run tests
-        run: npx cypress run
+        run: npm run test
+
+      - name: Stop and remove Docker container
+        run: docker stop myapp-container && docker rm myapp-container
