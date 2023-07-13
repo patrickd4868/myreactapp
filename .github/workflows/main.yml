@@ -28,19 +28,3 @@ jobs:
 
       - name: Stop and remove Docker container
         run: docker stop myapp-container && docker rm myapp-container
-
-  merge-to-master:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check Build Status
-        run: |
-          STATUS=$(curl -s -H "Authorization: Bearer ${{ secrets.ACCESS_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/commits/${{ github.sha }}/status" | \
-            jq -r '.state')
-
-          if [[ $STATUS != "success" ]]; then
-            echo "Build status is not successful. Exiting."
-            exit 1
-          fi
