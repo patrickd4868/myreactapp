@@ -23,7 +23,8 @@ jobs:
         run: sleep 10
 
       - name: Run tests with cypress
-        run: npx cypress run
+        run: |
+          docker exec -w /app myapp-container npx cypress run
 
       - name: Stop and remove Docker container
         run: docker stop myapp-container && docker rm myapp-container
