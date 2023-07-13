@@ -1,0 +1,30 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t myapp-image .
+
+      - name: Run Docker container
+        run: docker run -d -p 3000:3000 --name myapp-container myapp-image
+
+      - name: Wait for server to start
+        run: sleep 10
+
+      - name: Run tests with cypress
+        run: |
+          docker exec -w /app myapp-container npx cypress run
+
+      - name: Stop and remove Docker container
+        run: docker stop myapp-container && docker rm myapp-container
