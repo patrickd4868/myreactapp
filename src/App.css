@@ -1,16 +1,90 @@
 .App {
+  display: flex;
+  height: 100vh;
+}
+
+.content {
+  flex: 1;
+  position: relative;
+  transition: margin-left 0.3s ease;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+}
+
+.sidebar {
+  flex: none;
+  width: 100px;
+  background-color: #121418;
+  padding: 0px;
+  transition: transform 0.3s ease;
+  transform: translateX(-100px);
+  color: #121418;
+  margin-right: -100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+.sidebar.open + .content {
+  margin-left: 100px;
+  width: calc(100% - 100px);
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar li {
+  margin-bottom: 20px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sidebar a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.sidebar a:hover {
+  color: #000;
+}
+
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+}
+
+.nav-open .menu-toggle {
+  display: none;
+}
+
+.sidebar .menu-toggle {
+  position: static;
+  margin-bottom: 10px;
 }
 
 .App-header {
@@ -24,15 +98,17 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.default {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-link {
+  color: #61dafb;
 }
