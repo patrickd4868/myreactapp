@@ -15,20 +15,20 @@ describe("TestingPage", () => {
 
   it("should be able to enter text in the input field", () => {
     cy.get('[data-testid="text-input"]')
-      .type(inputValues.testText)
-      .should("have.value", inputValues.testText);
+      .type(inputValues.textInput)
+      .should("have.value", inputValues.textInput);
   });
 
   it("should clear the text input field on button click", () => {
     cy.get('[data-testid="text-input"]')
-      .type(inputValues.testText)
-      .should("have.value", inputValues.testText);
+      .type(inputValues.textInput)
+      .should("have.value", inputValues.textInput);
     cy.get('[data-testid="clear-button"]').click();
     cy.get('[data-testid="text-input"]').should("have.value", "");
   });
 
   it('should clear all input fields and session storage on "Clear All" button click', () => {
-    cy.get('[data-testid="text-input"]').type(inputValues.testText);
+    cy.get('[data-testid="text-input"]').type(inputValues.textInput);
     cy.get('[data-testid="name-input"]').type(inputValues.name);
     cy.get('[data-testid="email-input"]').type(inputValues.email);
     cy.get('[data-testid="clear-all-button"]').click();
@@ -43,14 +43,14 @@ describe("TestingPage", () => {
   });
 
   it("should maintain input values in session storage after navigating away and returning", () => {
-    cy.get('[data-testid="text-input"]').type(inputValues.testText);
+    cy.get('[data-testid="text-input"]').type(inputValues.textInput);
     cy.get('[data-testid="name-input"]').type(inputValues.name);
     cy.get('[data-testid="email-input"]').type(inputValues.email);
     cy.visit("/testing");
     cy.contains("Testing Page").click();
     cy.get('[data-testid="text-input"]').should(
       "have.value",
-      inputValues.testText
+      inputValues.textInput
     );
     cy.get('[data-testid="name-input"]').should("have.value", inputValues.name);
     cy.get('[data-testid="email-input"]').should(
@@ -60,7 +60,7 @@ describe("TestingPage", () => {
   });
 
   it('should clear input values in session storage after clicking "Clear All" and navigating away and returning', () => {
-    cy.get('[data-testid="text-input"]').type(inputValues.testText);
+    cy.get('[data-testid="text-input"]').type(inputValues.textInput);
     cy.get('[data-testid="name-input"]').type(inputValues.name);
     cy.get('[data-testid="email-input"]').type(inputValues.email);
     cy.get('[data-testid="clear-all-button"]').click();
