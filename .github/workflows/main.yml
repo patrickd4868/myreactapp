@@ -30,3 +30,19 @@ jobs:
 
       - name: Stop and remove Docker container
         run: docker stop myapp-container && docker rm myapp-container
+
+      - name: Set build status
+        if: ${{ always() }} # This step will always run, even if previous steps fail
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data } = await github.repos.createStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.sha,
+              state: 'success', // Set the initial state to 'success'
+              context: 'Build and Test',
+              description: 'Build and test workflow completed successfully',
+            });
+            console.log('Build status set');
