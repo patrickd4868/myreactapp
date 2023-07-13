@@ -32,6 +32,3 @@ EXPOSE 3000
 
 # Define the command to start your app
 CMD ["npm", "start"]
-FROM cypress/base
-RUN npm install
-RUN $(npm bin)/cypress run
